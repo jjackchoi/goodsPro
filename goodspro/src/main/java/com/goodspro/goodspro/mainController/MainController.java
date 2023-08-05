@@ -22,9 +22,9 @@ public class MainController {
 	
 	@PostMapping("/write")
 	public String write(BoardDto boardDto) {
-		
-		boardService.insert(boardDto);
 		System.out.println(boardDto.getBoardTitle()+boardDto.getBoardContent());
+		boardService.insert(boardDto);
+		
 		return "redirect:/#signup";
 	}
 	

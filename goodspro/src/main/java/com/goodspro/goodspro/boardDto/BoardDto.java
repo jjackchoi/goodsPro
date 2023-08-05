@@ -14,6 +14,17 @@ public class BoardDto {
 	String boardTitle; // 게시판제목
 	String boardContent; // 게시판내용
 	Date regDatetime; // 게시판 등록일시
+	public BoardDto(int boardSeq, String boardTitle, String boardContent, Date regDatetime) {
+		super();
+		this.boardSeq = boardSeq;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.regDatetime = regDatetime;
+	}
+	
+	public BoardDto() {
+		super();
+	}
 	public int getBoardSeq() {
 		return boardSeq;
 	}

@@ -17,8 +17,8 @@ public class BoardServiceImpl implements BoardService{
 	
 	@Override
 	public int insert(BoardDto boardDto) {
-		
-		return sqlSession.insert("com.example.demo.mapper.BoardMapper.insert");
+		System.out.println(boardDto.getBoardTitle()+boardDto.getBoardContent());
+		return sqlSession.insert("com.example.demo.mapper.BoardMapper.insert",boardDto);
 	}
 
 }
