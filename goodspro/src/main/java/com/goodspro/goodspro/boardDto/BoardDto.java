@@ -5,10 +5,6 @@ import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-
-@Getter
-@Setter
-@AllArgsConstructor
 public class BoardDto {
 	int boardSeq; // 게시판번호
 	String boardTitle; // 게시판제목
