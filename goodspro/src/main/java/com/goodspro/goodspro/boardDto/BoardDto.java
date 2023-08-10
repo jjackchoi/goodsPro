@@ -2,9 +2,6 @@ package com.goodspro.goodspro.boardDto;
 
 import java.util.Date;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 public class BoardDto {
 	int boardSeq; // 게시판번호
 	String boardTitle; // 게시판제목

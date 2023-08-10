@@ -1,6 +1,7 @@
 package com.goodspro.goodspro.service;
 
-import javax.annotation.Resource;
+import java.util.List;
+
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,4 +22,9 @@ public class BoardServiceImpl implements BoardService{
 		return sqlSession.insert("com.example.demo.mapper.BoardMapper.insert",boardDto);
 	}
 
+	@Override
+	public List<BoardDto> findAll() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("com.example.demo.mapper.BoardMapper.findAll");
+	}
 }

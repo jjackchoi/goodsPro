@@ -10,4 +10,8 @@
 			now()
 			)
 	</insert>
+	<select id="findAll" resultType="com.goodspro.goodspro.boardDto.BoardDto">
+		SELECT board_seq AS BoardSeq , board_title AS boardTitle ,board_content AS boardContent , reg_datetime AS regDatetime
+		FROM board
+	</select>
 </mapper>
