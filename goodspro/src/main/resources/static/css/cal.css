@@ -1,0 +1,81 @@
+@charset "UTF-8";
+/*!
+* Start Bootstrap - Grayscale v7.0.6 (https://startbootstrap.com/theme/grayscale)
+* Copyright 2013-2023 Start Bootstrap
+* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-grayscale/blob/master/LICENSE)
+*/
+/*!
+ * Bootstrap  v5.2.3 (https://getbootstrap.com/)
+ * Copyright 2011-2022 The Bootstrap Authors
+ * Copyright 2011-2022 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
+
+ /*topBtn*/
+ 
+#calBack{
+	background-color: aliceblue;
+	right: 10%;
+	bottom: 15%;
+	width: 450px;
+	padding: 10px 10px 10px 10px;
+	position: fixed;
+}
+/*롯데상품권*/
+#lot{
+	display: none;
+}
+#lot.show{
+	background-color: antiquewhite;
+	display: block;
+}
+/*롯데스페셜카드*/
+#lotSpcl{
+	display: none;
+}
+#lotSpcl.show{
+	background-color: antiquewhite;
+	display: block;
+}
+/*롯데호텔*/
+#lotHtl{
+	display: none;
+}
+#lotHtl.show{
+	background-color: antiquewhite;
+	display: block;
+}
+/*신세계상품권*/
+#shin{
+	display: none;
+}
+#shin.show{
+	background-color: antiquewhite;
+	display: block;
+}
+/*현대상품권*/
+#hyun{
+	display: none;
+}
+#hyun.show{
+	background-color: antiquewhite;
+	display: block;
+}
+/*국민관광상품권*/
+#people{
+	display: none;
+}
+#people.show{
+	background-color: antiquewhite;
+	display: block;
+}
+/*상품권라벨*/
+.giftLabel{
+	text-align:right;
+	width: 100px;
+}
+/*호텔상품권라벨*/
+.htlGiftLabel{
+	text-align: left;
+	width: 200px;
+}
