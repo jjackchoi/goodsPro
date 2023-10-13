@@ -11,14 +11,30 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
- /*topBtn*/
- 
+/*계산기버튼*/
+#calculator{
+	opacity: 1;   
+    width: 60px;
+    height: 60px;
+    color: #fff;
+    background-color: #ef476f;
+	right: 5%;
+	bottom: 10%;
+	position: fixed;
+	border: 2px solid #fff;
+    border-radius: 50%; 
+    font: bold 15px monospace;       
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+/*계산기*/ 
 #calBack{
 	background-color: aliceblue;
 	right: 10%;
 	bottom: 15%;
 	width: 450px;
 	padding: 10px 10px 10px 10px;
+	display: none;
 	position: fixed;
 }
 /*롯데상품권*/

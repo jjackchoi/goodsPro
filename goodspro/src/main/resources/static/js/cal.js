@@ -1,3 +1,13 @@
+/*계산기 호출버튼*/
+//토글기능으로 계산기버튼 누르면 div 보이기 <-> 숨기기
+var cBack = document.getElementById('calBack');
+function calculate(){
+	if(cBack.style.display == 'none'){
+		cBack.style.display = 'block';
+	}else{
+		cBack.style.display = 'none';
+	}
+}
 /*계산기*/
 
 //체크박스 값들 가져오기
