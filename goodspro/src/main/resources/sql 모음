@@ -8,3 +8,5 @@ CREATE TABLE goodsPro.board (
 ENGINE=InnoDB
 DEFAULT CHARSET=utf8mb4
 COLLATE=utf8mb4_0900_ai_ci;
+컬럼수정(reg_datetime)
+ALTER TABLE goodspro.board MODIFY COLUMN reg_datetime datetime DEFAULT current_timestamp() NOT NULL;

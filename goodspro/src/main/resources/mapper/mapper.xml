@@ -2,16 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="BoardMapper">
+
+	<!--board 테이블 전체 칼럼-->
+	<sql id="columns">
+		 board_seq
+		,board_title
+		,board_content
+		,reg_datetime
+	</sql>
+
+	<!--게시글 작성-->
 	<insert id="insert">
-		insert into board (board_title, board_content, reg_datetime)
+		insert into board
+			<include refid="columns"/>
 		values(
 			#{boardTitle}, 
-			#{boardContent}, 
-			now()
+			#{boardContent}
 			)
 	</insert>
-	<select id="findAll" resultType="com.goodspro.goodspro.dto.BoardDto">
-		SELECT board_seq AS BoardSeq , board_title AS boardTitle ,board_content AS boardContent , reg_datetime AS regDatetime
-		FROM board
+
+	<!--게시글 전체 조회-->
+	<select id="findAll" parameterType="com.goodspro.goodspro.dto.SearchDto" resultType="com.goodspro.goodspro.dto.BoardDto">
+		SELECT
+			<include refid="columns"/>
+		FROM
+			board
+		ORDER BY
+			board_seq DESC
+		LIMIT #{offset}, #{recordSize}
+	</select>
+
+	<!--카운팅-->
+	<select id="count" parameterType="com.goodspro.goodspro.dto.SearchDto" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			board
 	</select>
 </mapper>

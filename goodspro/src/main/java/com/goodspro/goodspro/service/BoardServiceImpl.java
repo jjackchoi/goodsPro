@@ -3,6 +3,7 @@ package com.goodspro.goodspro.service;
 import java.util.List;
 
 
+import com.goodspro.goodspro.dto.SearchDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,12 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<BoardDto> findAll() {
-		return sqlSession.selectList("BoardMapper.findAll");
+	public List<BoardDto> findAll(SearchDto params) {
+		return sqlSession.selectList("BoardMapper.findAll", params);
+	}
+
+	@Override
+	public int count(SearchDto params) {
+		return sqlSession.selectOne("BoardMapper.count",params);
 	}
 }
