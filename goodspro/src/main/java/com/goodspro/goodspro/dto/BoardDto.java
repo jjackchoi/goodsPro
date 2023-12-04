@@ -1,4 +1,4 @@
-package com.goodspro.goodspro.boardDto;
+package com.goodspro.goodspro.dto;
 
 import java.util.Date;
 

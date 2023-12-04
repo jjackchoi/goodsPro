@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.goodspro.goodspro.boardDto.BoardDto;
+import com.goodspro.goodspro.dto.BoardDto;
 import com.goodspro.goodspro.service.BoardServiceImpl;
 
 

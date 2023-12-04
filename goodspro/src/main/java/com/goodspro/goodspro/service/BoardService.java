@@ -2,7 +2,7 @@ package com.goodspro.goodspro.service;
 
 import java.util.List;
 
-import com.goodspro.goodspro.boardDto.BoardDto;
+import com.goodspro.goodspro.dto.BoardDto;
 
 public interface BoardService {
 
