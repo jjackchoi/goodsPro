@@ -311,13 +311,13 @@
 							            <th>게시판 번호</th>
 							            <th>게시판 제목</th>
 							            <th>게시판 내용</th>
-							            <!--<th>글 작성일</th>-->
+							            <th>글 작성일</th>
 							        </tr>
 							        <tr th:each="posts : ${posts}">
 							            <td th:class="${'table-striped tbody tr td'}" th:text="${posts.boardSeq}"></td>
 							            <td th:class="${'table-striped tbody tr td'}" th:text="${posts.boardTitle}"></td>
 							            <td th:class="${'table-striped tbody tr td'}" th:text="${posts.boardContent}"></td>
-							            <!--<td th:text="${#dates.format(board.regDatetime, 'yyyy-MM-dd HH:mm:ss')}"></td>-->
+							            <td th:text="${#dates.format(posts.regDatetime, 'yyyy-MM-dd HH:mm:ss')}"></td>
 							        </tr>
 							    </table>
                             <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:required">An email is required.</div>
