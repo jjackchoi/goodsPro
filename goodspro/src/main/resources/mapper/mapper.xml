@@ -12,13 +12,16 @@
 	</sql>
 
 	<!--게시글 작성-->
-	<insert id="insert">
-		insert into board
+	<insert id="insert" parameterType="com.goodspro.goodspro.dto.BoardDto" useGeneratedKeys="true" keyProperty="boardSeq">
+		insert into board(
 			<include refid="columns"/>
+		)
 		values(
+			#{boardSeq},
 			#{boardTitle}, 
-			#{boardContent}
-			)
+			#{boardContent},
+			now()
+		)
 	</insert>
 
 	<!--게시글 전체 조회-->
