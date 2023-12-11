@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -306,20 +306,49 @@
                             <br>
                             <div class="col-auto"><button class="btn btn-primary" type="submit">문의하기</button></div>
                             <br>
-                                <table class="table table-striped table-bordered">
-							        <tr>
-							            <th>게시판 번호</th>
-							            <th>게시판 제목</th>
-							            <th>게시판 내용</th>
-							            <th>글 작성일</th>
-							        </tr>
-							        <tr th:each="posts : ${posts}">
-							            <td th:class="${'table-striped tbody tr td'}" th:text="${posts.boardSeq}"></td>
-							            <td th:class="${'table-striped tbody tr td'}" th:text="${posts.boardTitle}"></td>
-							            <td th:class="${'table-striped tbody tr td'}" th:text="${posts.boardContent}"></td>
-							            <td th:text="${#dates.format(posts.regDatetime, 'yyyy-MM-dd HH:mm:ss')}"></td>
-							        </tr>
-							    </table>
+                            <!--/* .content */-->
+                            <div class="content">
+                                <section>
+                                    <!--/* 리스트 */-->
+                                    <table class="tb tb_col">
+                                        <colgroup>
+                                            <col style="width:50px;"/><col style="width:7.5%;"/><col style="width:auto;"/><col style="width:10%;"/><col style="width:15%;"/><col style="width:7.5%;"/>
+                                        </colgroup>
+                                        <thead>
+                                        <tr>
+                                            <th scope="col"><input type="checkbox"/></th>
+                                            <th scope="col">제목</th>
+                                            <th scope="col">내용</th>
+                                            <th scope="col">등록일</th>
+                                        </tr>
+                                        </thead>
+
+                                        <!--/* 리스트 데이터 렌더링 영역 */-->
+                                        <tbody id="list">
+
+                                        </tbody>
+                                    </table>
+
+                                    <!--/* 페이지네이션 렌더링 영역 */-->
+                                    <div class="paging">
+
+                                    </div>
+                                </section>
+                            </div> <!--/* .content */-->
+<!--                                <table class="table table-striped table-bordered">-->
+<!--							        <tr>-->
+<!--							            <th>게시판 번호</th>-->
+<!--							            <th>게시판 제목</th>-->
+<!--							            <th>게시판 내용</th>-->
+<!--							            <th>글 작성일</th>-->
+<!--							        </tr>-->
+<!--							        <tr th:each="posts : ${posts}">-->
+<!--							            <td th:class="${'table-striped tbody tr td'}" th:text="${posts.boardSeq}"></td>-->
+<!--							            <td th:class="${'table-striped tbody tr td'}" th:text="${posts.boardTitle}"></td>-->
+<!--							            <td th:class="${'table-striped tbody tr td'}" th:text="${posts.boardContent}"></td>-->
+<!--							            <td th:text="${#dates.format(posts.regDatetime, 'yyyy-MM-dd HH:mm:ss')}"></td>-->
+<!--							        </tr>-->
+<!--							    </table>-->
                             <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:required">An email is required.</div>
                             <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:email">Email is not valid.</div>
                             <!-- Submit success message-->
@@ -394,10 +423,77 @@
         <script src="js/scripts.js"></script>
         <script src="js/topBtn.js"></script>
         <script src="js/cal.js?ver=1"></script>
+<!--        <script type="text/javascript" th:src="@{/js/list.js}"></script>-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     </body>
+    <th:block layout:fragment="script">
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+                window.onload = () => {
+                // 페이지가 로드되었을 때, 딱 한 번만 함수를 실행
+                findAllPost();
+
+                }
+
+                // 게시글 리스트 조회
+                function findAllPost(){
+
+                    // 1. PagingResponse의 멤버인 List<T> 타입의 list를 의미
+                    const list = [[ ${response.list} ]];
+
+                    // 2. 리스트가 비어있는 경우, 행에 "검색 결과가 없다"는 메세지를 출력하고, 페이지 번호(페이지네이션) HTML을 제거(초기화)한 후 로직을 종료
+                    if ( !list.length) {
+                    document.getElementById('list').innerHTML = '<td colspan="6"><div className="no_data_msg">검색된 결과가 없습니다.</div><td>';
+                    drawPage();
+                    }
+
+                    // 3. PagingResponse의 멤버인 pagination을 의미
+                    const pagination = [[ ${response.pagination} ]];
+
+                    // 4. @ModelAttribute를 이용하여 뷰(HTML)로 전달한 SearchDto 타입의 객체인 params를 의미
+                    const params = [[ ${params} ]];
+
+                    // 5. 리스트에 출력되는 게시글 번호를 처리하기 위해 사용되는 변수 (리스트에서 번호는 페이지 정보를 이용해서 계산해야 함)
+                    let num = pagination.totalRecordCount - ((params.page - 1) * params.recordSize);
+
+                    // 6. 리스트 데이터 렌더링
+                    drawList(list, num);
+
+                    // 7. 페이지 번호 렌더링
+                    drawPage(pagination, params);
+                    }
+
+                // 리스트 HTML draw
+                function drawList(list, num){
+
+                    // 1. 렌더링 할 HTML을 저장할 변수
+                    let html = '';
+
+                    /*
+                    * 2. 기존에 타임리프를 이용해서 리스트 데이터를 그리던 것과 유사한 로직
+                    *    기존에는 게시글 번호를 (전체 데이터 수 - loop의 인덱스 번호)로 처리했으나,
+                    *    현재는 (전체 데이터 수 - ((현재 페이지 번호 -1) * 페이지당 출력할 데이터 개수))로 정밀히 계산
+                    */
+                    list.forEach(row => {
+                        html += `
+                            <tr>
+                                <td><input type="checkbox" /></td>
+                                <td>${row.boardTitle}</td>
+                                <td>${row.boardContent}</td>
+                                <td>${dayjs(row.regDateTime).format('YYYY-MM-DD HH:mm')}</td>
+                            </tr>
+                        `;
+                    })
+
+                    // 3. id가 "list"인 요소를 찾아 HTML을 렌더링
+                    document.getElementById('list').innerHTML = html;
+                }
+            /*]]>*/
+        </script>
+    </th:block>
 </html>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.goodspro.goodspro.dto.MessageDto;
 import com.goodspro.goodspro.dto.SearchDto;
+import com.goodspro.goodspro.paging.PagingResponse;
 import org.apache.logging.log4j.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,8 +26,8 @@ public class MainController {
 	
 	@GetMapping("/")
 	public String home(@ModelAttribute("params") final SearchDto params, Model model) {
-		List<BoardDto> posts = boardService.findAll(params);
-		model.addAttribute("posts", posts);
+		PagingResponse<BoardDto> response = boardService.findAll(params);
+		model.addAttribute("response", response);
 		return "home";
 	}
 	

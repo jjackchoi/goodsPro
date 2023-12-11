@@ -32,7 +32,7 @@
 			board
 		ORDER BY
 			board_seq DESC
-		LIMIT #{offset}, #{recordSize}
+		LIMIT #{pagination.limitStart}, #{recordSize}
 	</select>
 
 	<!--카운팅-->
