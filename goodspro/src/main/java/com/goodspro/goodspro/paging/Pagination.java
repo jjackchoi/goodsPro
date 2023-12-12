@@ -46,7 +46,7 @@ public class Pagination {
         limitStart = (params.getPage() - 1) * params.getRecordSize();
 
         // 이전 페이지 존재 여부 확인
-        existNextPage = startPage != 1;
+        existPrevPage = startPage != 1;
 
         // 다음 페이지 존재 여부 확인
         existNextPage = (endPage * params.getRecordSize()) < totalRecordCount;
